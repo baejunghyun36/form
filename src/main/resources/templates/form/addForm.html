@@ -48,33 +48,19 @@
         </div>
 
         <!-- multi checkbox -->
+        <!-- multi checkbox -->
+
         <div>
             <div>등록 지역</div>
-            <div class="form-check form-check-inline">
-                <input type="checkbox" value="SEOUL" class="form-check-input"
-                       id="regions1" name="regions">
-                <input type="hidden" name="_regions" value="on"/>
-                <label for="regions1"
-                       class="form-check-label">서울</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="checkbox" value="BUSAN" class="form-check-input"
-                       id="regions2" name="regions">
-                <input type="hidden" name="_regions" value="on"/>
-                <label for="regions2"
-                       class="form-check-label">부산</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="checkbox" value="JEJU" class="form-check-input"
-                       id="regions3" name="regions">
-                <input type="hidden" name="_regions" value="on"/>
-                <label for="regions3"
-                       class="form-check-label">제주</label>
+            <div th:each="region : ${regions}" class="form-check form-check-inline">
+                <input type="checkbox" th:field="${item.regions}" th:value="${region.key}" class="form-check-input" >
+                <!--            여기서 item에 있는 regions-->
+
+                <!--            동적으로 아이디 생성될 때 #ids 위에ㅓ item.regions에서 생성되는 id를 동적으로 가져와서 씀 -->
+                <label th:for="${#ids.prev('regions')}"
+                       th:text="${region.value}" class="form-check-label">서울</label>
             </div>
         </div>
-        <!-- -->
-
-
 
         <div class="row">
             <div class="col">
@@ -87,6 +73,7 @@
                         type="button">취소</button>
             </div>
         </div>
+
 
     </form>
 
